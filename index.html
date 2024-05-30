@@ -36,39 +36,7 @@
         <button type="submit">Send</button>
     </form> -->
 
-    <form name="contact" method="POST" netlify data-netlify="true">
-        <div class="form-group">
-            <input type="text" name="name" placeholder="Your Name" required>
-        </div>
-        <div class="form-group">
-            <input type="email" name="email" placeholder="Your Email" required>
-        </div>
-        <div class="form-group">
-            <textarea name="message" placeholder="Your Message" required></textarea>
-        </div>
-        <button type="submit">Send</button>
-        <p id="success-message" style="display: none;">Thank you for your message!</p>
-    </form>
     
-    <script>
-        document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var form = event.target;
-            var data = new FormData(form);
-            fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    document.getElementById('success-message').style.display = 'block';
-                    form.reset();
-                } else {
-                    alert('Something went wrong. Please try again.');
-                }
-            });
-        });
-    </script>
     
     
     <!-- Navbar Start -->
@@ -539,6 +507,42 @@
 
                     <!-- Template Javascript -->
                     <script src="js/main.js"></script>
+
+<h3 style="text-align: center;">Please provide me the feedback</h3>
+
+                    <form name="contact" method="POST" netlify data-netlify="true">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit">Send</button>
+                        <p id="success-message" style="display: none;">Thank you for your message!</p>
+                    </form>
+                    
+                    <script>
+                        document.querySelector('form').addEventListener('submit', function(event) {
+                            event.preventDefault();
+                            var form = event.target;
+                            var data = new FormData(form);
+                            fetch(form.action, {
+                                method: 'POST',
+                                body: data,
+                                headers: { 'Accept': 'application/json' }
+                            }).then(response => {
+                                if (response.ok) {
+                                    document.getElementById('success-message').style.display = 'block';
+                                    form.reset();
+                                } else {
+                                    alert('Something went wrong. Please try again.');
+                                }
+                            });
+                        });
+                    </script>
 </body>
 
 </html>
