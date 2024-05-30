@@ -29,12 +29,47 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
 
     <!--netlify form-->
-    <form name="contact" method="POST" netlify>
+    <!-- <form name="contact" method="POST" netlify>
         <input type="text" name="name" placeholder="Your Name">
         <input type="email" name="email" placeholder="Your Email">
         <textarea name="message" placeholder="Your Message"></textarea>
         <button type="submit">Send</button>
+    </form> -->
+
+    <form name="contact" method="POST" netlify data-netlify="true">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+            <textarea name="message" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit">Send</button>
+        <p id="success-message" style="display: none;">Thank you for your message!</p>
     </form>
+    
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = event.target;
+            var data = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('success-message').style.display = 'block';
+                    form.reset();
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            });
+        });
+    </script>
+    
     
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
